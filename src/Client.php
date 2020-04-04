@@ -67,7 +67,7 @@ class Client
      * 
      * @var object
      */
-    public function setRequest(Request $request)
+    public function setRequest($request)
     {
         $this->request = $request;
     }
