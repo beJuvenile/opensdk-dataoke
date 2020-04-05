@@ -5,7 +5,7 @@
  * @link: http://www.dataoke.com/pmc/api-d.html?id=5
  *
  * User: Ken.Zhang <kenphp@yeah.net>
- * Date: 2019/9/22
+ * Date: 2020/4/05
  * Time: 21:01
  */
 namespace OpenSDK\DaTaoKe\Requests;
@@ -34,7 +34,7 @@ class GoodsListRequest implements Request
      *
      * @var string
      */
-    public $version = 'v1.1.0';
+    public $version = 'v1.2.1';
 
     private $pageSize = 100; // 默认100，可选范围：10,50,100,200，如果小于10按10处理，大于200按照200处理，其它非范围内数字按100处理
 
@@ -52,6 +52,8 @@ class GoodsListRequest implements Request
 
     private $subcid;        // 二级类目Id 大淘客的二级类目id，通过超级分类API获取。
                             // 仅允许传一个二级id，当一级类目id和二级类目id同时传入时，会自动忽略二级类目id
+
+    private $specialId;     // 商品卖点 1.拍多件活动；2.多买多送；3.限量抢购；4.额外满减；6.买商品礼赠
 
     private $juHuaSuan;     // 是否聚划算 1-聚划算商品，0-所有商品，不填默认为0
 
@@ -107,6 +109,12 @@ class GoodsListRequest implements Request
     {
         $this->subcid = (string)$id;
         $this->apiParams['subcid'] = (string)$id;
+    }
+
+    public function setSpecialId($val)
+    {
+        $this->specialId = (int)$val;
+        $this->apiParams['specialId'] = (int)$val;
     }
 
     public function setJuHuaSuan($val)

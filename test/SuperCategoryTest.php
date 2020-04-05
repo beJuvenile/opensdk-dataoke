@@ -1,17 +1,17 @@
 <?php
 /**
- * 热搜词API测试类
+ * 超级分类API测试类
  *
  * User: Ken.Zhang <kenphp@yeah.net>
- * Date: 2019/9/23
+ * Date: 2020/4/4
  * Time: 11:46
  */
 require '../vendor/autoload.php';
 
 use OpenSDK\DaTaoKe\Client;
-use OpenSDK\DaTaoKe\Requests\HotWordsRequest;
+use OpenSDK\DaTaoKe\Requests\SuperCategoryRequest;
 
-class HotWordsTest
+class SuperCategoryTest
 {
 
     private $appKey = '5d84bcc8bf12';
@@ -23,7 +23,7 @@ class HotWordsTest
         $c = new Client();
         $c->appKey = $this->appKey;
         $c->appSecret = $this->appSecret;
-        $req = new HotWordsRequest();
+        $req = new SuperCategoryRequest();
         $c->setRequest($req);
         $result = $c->execute();
 
@@ -32,4 +32,4 @@ class HotWordsTest
 
 }
 
-(new HotWordsTest())();
+(new SuperCategoryTest())();
