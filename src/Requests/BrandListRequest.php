@@ -34,7 +34,7 @@ class BrandListRequest implements Request
      *
      * @var string
      */
-    public $version = 'v1.1.0';
+    public $version = 'v1.1.1';
 
     private $pageId;    // 页码
 
