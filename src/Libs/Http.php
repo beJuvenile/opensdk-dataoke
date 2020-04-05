@@ -16,18 +16,20 @@ class Http
      *
      * @param string $url // 请求地址
      * @param array $data // 数据
-     * @param array $headers // 请求头
-     * @param array $cookies // cookie
+     * @param array $options // 请求项
      * @return mixed
      */
-    public static function post($url, $data, $headers=[], $cookies=[])
+    public static function post($url, $data, $options = [])
     {
+        $timeout = $options['timeout'] ?? 5;
+        $headers = $options['header'] ?? [];
+        $cookies = $options['cookie'] ?? [];
         try{
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_FAILONERROR, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
@@ -64,10 +66,13 @@ class Http
      *
      * @param string $url // 请求地址
      * @param array $query // 参数
+     * @param array $options // 请求项
      * @return mixed
      */
-    public static function get($url, $query)
+    public static function get($url, $query, $options=[])
     {
+        $timeout = $options['timeout'] ?? 5;
+
         try{
             $request_url = $url . '?' . http_build_query($query);
 
@@ -75,7 +80,7 @@ class Http
             //设置选项，包括URL
             curl_setopt($ch, CURLOPT_URL, $request_url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//绕过ssl验证
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             //执行并获取HTML文档内容

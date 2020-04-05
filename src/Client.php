@@ -41,7 +41,14 @@ class Client
      * @var string
      */
     public $appSecret;
-    
+
+    /**
+     * 超时时间
+     *
+     * @var int
+     */
+    public $timout = 3;
+
     /**
      * request对象
      * 
@@ -85,9 +92,13 @@ class Client
         $params['sign']   = Signer::make($params, $this->appSecret);
 
         if (strtolower($this->request->requestType)=='post') {
-            $result = Http::post($requestUrl, $params);
+            $result = Http::post($requestUrl, $params, [
+                'timeout' => $this->timout,
+            ]);
         } else {
-            $result = Http::get($requestUrl, $params);
+            $result = Http::get($requestUrl, $params, [
+                'timeout' => $this->timout,
+            ]);
         }
 
         return strtolower($this->format)=='json' ? Format::deJSON($result) : Format::deSimpleXML($result);
