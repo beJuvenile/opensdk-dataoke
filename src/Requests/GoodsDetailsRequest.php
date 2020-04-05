@@ -34,7 +34,7 @@ class GoodsDetailsRequest implements Request
      *
      * @var string
      */
-    public $version = 'v1.1.0';
+    public $version = 'v1.2.1';
 
     private $id;        // 商品id 大淘客商品id，请求时id或goodsId必填其中一个，若均填写，将优先查找当前单品id
 
