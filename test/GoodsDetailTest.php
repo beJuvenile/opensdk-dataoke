@@ -14,9 +14,17 @@ use OpenSDK\DaTaoKe\Requests\GoodsDetailsRequest;
 class GoodsDetailTest
 {
 
-    private $appKey = '5d84bcc8bf121';
+    private $appKey;
 
-    private $appSecret = 'dab025a5213aef8e94a8f2dc52d37e2a';
+    private $appSecret;
+
+    public function __construct()
+    {
+        $config = require 'config.php';
+
+        $this->appKey = $config['app_key'];
+        $this->appSecret = $config['app_secret'];
+    }
 
     public function __invoke()
     {

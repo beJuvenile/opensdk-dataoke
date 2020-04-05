@@ -1,6 +1,6 @@
 <?php
 /**
- * 商品列表API测试类
+ * 定时拉取API测试类
  *
  * User: Ken.Zhang <kenphp@yeah.net>
  * Date: 2020/4/5
@@ -9,9 +9,9 @@
 require '../vendor/autoload.php';
 
 use OpenSDK\DaTaoKe\Client;
-use OpenSDK\DaTaoKe\Requests\GoodsListRequest;
+use OpenSDK\DaTaoKe\Requests\GoodsByTimeRequest;
 
-class GoodsListTest
+class GoodsByTimeTest
 {
 
     private $appKey;
@@ -31,7 +31,8 @@ class GoodsListTest
         $c = new Client();
         $c->appKey = $this->appKey;
         $c->appSecret = $this->appSecret;
-        $req = new GoodsListRequest();
+        $req = new GoodsByTimeRequest();
+        $req->setPageId('1');
         $c->setRequest($req);
         $result = $c->execute();
 
@@ -40,4 +41,4 @@ class GoodsListTest
 
 }
 
-(new GoodsListTest())();
+(new GoodsByTimeTest())();
