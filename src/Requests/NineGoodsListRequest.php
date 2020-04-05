@@ -34,7 +34,7 @@ class NineGoodsListRequest implements Request
      *
      * @var string
      */
-    public $version = 'v1.0.2';
+    public $version = 'v1.1.0';
 
     private $pageId;    // 请求的页码，默认参数1
 
